@@ -8,13 +8,13 @@ This is a webfrontend for a full Bitgesell node. Bitgesell-node-monitor is runni
 # How it works
 The application consists of the following pages:
 1. overview - shows basic info about the node like processor count, available memorry, active interfaces, connected peers, client version, number of blocks, synced state, etc.
-![overview screenshot](doc/img/mock.png "Overview")
+![overview screenshot](doc/img/overviw.png "Overview")
 2. mempool - page shows total mempool entries, size of the mempool, to how many blocks would the transactions roughly fit, transaction size, weight and if the transaction has a witness (is segwit). Shows the last 10 txes in realtime that the BGLd client sent us through zeromq. 
-![mempool screenshot](doc/img/mempool.png "Mempool")
+
 3. block explorer - the 10 latest blocks are shown, their size, weight, timestamp 
-![blockexplorer screenshot](doc/img/blockexplorer.png "Blockexplorer")
+![blockexplorer screenshot](doc/img/mock.png "Blockexplorer")
 5. transaction explorer - details about a TX are shown once the hash is included in the search bar
-![transactionexplorer screenshot](doc/img/txexplorer.png "Transactionexplorer")
+
 
 # docker setup (Linux/macOS):
  - Install bitgesell core [bitgesell-core](https://gist.github.com/naftalimurgor/45872acbf5fa9c18ab08e46e66e2d3ff)

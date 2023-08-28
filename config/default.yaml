@@ -5,11 +5,11 @@ Web:
 Client:
   appName: Bitgesell-node-monitor
   apiUrlStart: "/api/bgld"
-  pageName: "My Bitgesell Fullnode"
+  pageName: "My Bitgesell Mainnet Fullnode"
 
 RPC:
   host: 172.17.0.1
-  port: 18332
+  port: 8332
   rpc_username: secretuser
   rpc_password: secretpass
   concurrency: 100
@@ -79,4 +79,4 @@ Api:
       inputName: none
       inputType: none
       uri: '/getblockcount'
-... 
+...

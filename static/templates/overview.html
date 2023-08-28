@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-sm-6">
+        <h3 class="text-center">System information</h3>
+        <dl class="dl-horizontal"> 
+            <dt>uptime:</dt>
+            <dd>{{info.uptime|secondsToDateTime}}</dd>
+            <dt>platform:</dt>
+            <dd>{{info.platform}}</dd>
+            <dt>cpu model:</dt>
+            <dd>{{info.cpus[0].model}}</dd>
+            <dt>cpu count:</dt>
+            <dd>{{info.cpus.length}}</dd>
+            <dt>hostname:</dt>
+            <dd>{{info.hostname}}</dd>
+            <dt>state:</dt>
+            <dd ng-show="info.synced"  class="text text-success">synced</dd>
+            <dd ng-hide="info.synced"  class="text text-danger">not synced</dd>
+            <dt>client version:</dt>
+            <dd>{{info.version}}</dd>
+            <dt>blocks:</dt>
+            <dd>{{blocks}}</dd>
+            <dt>blockchain size:</dt>
+            <dd>{{info.blockchainSize|bytes}}</dd>
+            <dt>totalmem:</dt>
+            <dd>{{info.totalmem|bytes}}</dd>
+            <dt>freemem:</dt>
+            <dd>{{info.freemem|bytes}} ({{info.freemem/info.totalmem|percent}})</dd>
+            <dt>load:</dt>
+            <dd>5&nbsp;&nbsp; min. avg - <strong ng-class="setLoadCss(info.loadavg[0])">{{loadInPercent(info.loadavg[0])|percent}}</strong></dd>
+            <dd>10 min. avg - <strong ng-class="setLoadCss(info.loadavg[1])">{{loadInPercent(info.loadavg[1])|percent}}</strong></dd>
+            <dd>15 min. avg - <strong ng-class="setLoadCss(info.loadavg[2])">{{loadInPercent(info.loadavg[2])|percent}}</strong></dd>
+            
+        </dl>
+    </div>
+    <div class="col-sm-6">
+        <h3 class="text-center">Active interfaces</h3>
+        <dl ng-repeat="(intName, value) in info.networkInterfaces" ng-if="intName !== 'lo'" class="dl-horizontal"> <dt>{{intName}}</dt>
+            <dd>address: {{value[0].address}}</dd>
+            <dd>netmask: {{value[0].netmask}}</dd>
+        </dl>
+    </div>
+</div>
+<button class="btn btn-info" ng-click="refresh()">Refresh</button><em> - press to refresh list</em>
+<table class="table">
+    <caption class="text-center">Connected peers: {{peers.length}}</caption>
+    <thead>
+        <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">address</th>
+            <th class="text-center">local address</th>
+            <th class="text-center">client version</th>
+            <th class="text-center">connection type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="peer in peers" class="text-center">
+            <td class="text-center">{{$index+1}}</td>
+            <td>{{peer.addr}}</td>
+            <td>{{peer.addrlocal}}</td>
+            <td class="text-center">{{peer.subver}}</td>
+            <td class="text-center">
+                <button class="btn btn-success" ng-show="peer.inbound"><strong>&nbsp;in&nbsp;</strong></button>
+                <button class="btn btn-danger" ng-hide="peer.inbound"><strong>out</strong></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div loading></div>
